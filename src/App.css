@@ -3,7 +3,7 @@ html, body, .root {
 }
 
 body {
-  line-height: 1.5;
+  overflow: hidden;
 }
 
 body, .app {
@@ -195,4 +195,27 @@ button:active {
   padding: 20px 10px 0;
   text-align: center;
   font-size: 0.8em;
+}
+
+.padding0{
+  padding: 0 !important;
+}
+
+.row.no-gutter { 
+  margin-left:0;
+  margin-right:0; 
+}
+.white-color {
+  color: #fff;
+}
+
+.font-size-large{
+  font-size: large;
+}
+
+.link{
+  text-decoration: none;
+}
+.link:hover{
+    color: #E03B8B;
 }
