@@ -3,7 +3,8 @@ html, body, .root {
 }
 
 body {
-  overflow: hidden;
+ overflow-y: auto;
+ overflow-x: hidden;
 }
 
 body, .app {
@@ -201,6 +202,10 @@ button:active {
   padding: 0 !important;
 }
 
+.pl-4 {
+  padding-left: 1.5rem!important;
+}
+
 .row.no-gutter { 
   margin-left:0;
   margin-right:0; 
@@ -218,4 +223,24 @@ button:active {
 }
 .link:hover{
     color: #E03B8B;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.book-shelves-title {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.card.no-border{
+  border: none;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

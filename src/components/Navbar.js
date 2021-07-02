@@ -17,7 +17,7 @@ class Navbar extends React.Component {
     render() {
     return (
         <nav className="navbar navbar-dark bg-primary col-sm-12 row no-gutter font-size-large">
-            <div className="col-sm-6 white-color">
+            <div className="col-sm-6 white-color ">
                 {this.props.navData.title}
             </div>
             <div className="col-sm-6 row">
