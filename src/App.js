@@ -8,22 +8,44 @@ var navBarData = {
   title: "Book Store",
   buttons: ["Currently Reading", "Want to Read","Read"]
 }
+
 var bookType = ["Currently Reading", "Want to Read","Read"]
 class BooksApp extends React.Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      books : []
+    }
+  }
+
   componentDidMount() {
-    var tmp = BooksAPI.getAll()
-    tmp.then((res) => {
-      this.setState({books:res})
-    })
+    this.getAllBooks()
   }
-  state = {
-    books : []
+
+  getAllBooks = () => {
+    BooksAPI.getAll()
+      .then((books) => {
+      this.setState({books})
+      })
+      .catch(err => console.log("error from getAllBooks function in App.js file",err))
   }
+
+  updateBookShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+      .then((res) => {
+        if (res) {
+        this.getAllBooks()
+      }
+      })
+    .catch(err => console.log("error from updateBookShelf function in App.js file",err))
+  }
+
   render() {
     return (
       <div>
         <Navbar navData={navBarData} />
-        <BookView books={this.state.books} bookType = {bookType} />
+        <BookView books={this.state.books} bookType = {bookType} updateBookShelf= {this.updateBookShelf} />
       </div>
     )
   }

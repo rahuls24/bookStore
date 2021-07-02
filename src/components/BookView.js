@@ -29,7 +29,7 @@ var dropdownMenu = [
   }
 ]
 class BookView extends React.Component {
-  // This method is for making id of by giving name 
+  // Functionality => For making id of by giving raw string
   generateId = (rawId) => {
         let tmpId = rawId.split(' ')
         tmpId = tmpId.map((item, index) => {
@@ -40,10 +40,16 @@ class BookView extends React.Component {
         })
         return "#"+tmpId.join('')
   }
-
+  
+  // Functionality => Filter book as per as shelf 
   filterBooks = (bookType) => {
     bookType = this.generateId(bookType).slice(1)
     return this.props.books.filter((book) => book.shelf === bookType)
+  }
+
+  // Functionality => Helper function that trigger when something change in dropdown
+  updateBookShelfHelper = (book,id) => {
+    this.props.updateBookShelf(book,id)
   }
   render() {
     return (
@@ -67,12 +73,16 @@ class BookView extends React.Component {
                                       <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}>
                                       </div>
                                       <div className="book-shelf-changer">
-                                        <select>
+                                        <select onChange={e => this.updateBookShelfHelper(book,e.target.value)} id="bookDropdown">
                                           {dropdownMenu.map((item) => {
                                             if (item.isDisable) {
                                               return <option value={item.value} key={item.value} disabled>{ item.name}</option>
                                             }
-                                            return <option value={item.value} key={item.value}>{ item.name}</option>
+                                            // Handle the default value
+                                            if (item.value ===book.shelf) {
+                                              return <option value={item.value} key={item.value} selected>{item.name}</option>
+                                            }
+                                            return <option value={item.value} key={item.value}>{item.name}</option>
                                           })}
                                         </select>
                                       </div>
