@@ -7,7 +7,7 @@ This project is part of [Udacity React Nanodegree course](https://www.udacity.co
 * State Management
 * React Router
 
-## Requirement Of this project is : -
+## Requirements of this project is : -
 
 
 ----
