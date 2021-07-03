@@ -151,7 +151,7 @@ class SearchBook extends Component {
   };
   render() {
     if (this.state.isAdded) {
-      return <Redirect to="/" />;
+      return <Redirect to="/:read" />;
     }
     return (
       <div>
