@@ -3,7 +3,8 @@ html, body, .root {
 }
 
 body {
-  line-height: 1.5;
+ overflow-y: auto;
+ overflow-x: hidden;
 }
 
 body, .app {
@@ -195,4 +196,51 @@ button:active {
   padding: 20px 10px 0;
   text-align: center;
   font-size: 0.8em;
+}
+
+.padding0{
+  padding: 0 !important;
+}
+
+.pl-4 {
+  padding-left: 1.5rem!important;
+}
+
+.row.no-gutter { 
+  margin-left:0;
+  margin-right:0; 
+}
+.white-color {
+  color: #fff;
+}
+
+.font-size-large{
+  font-size: large;
+}
+
+.link{
+  text-decoration: none;
+}
+.link:hover{
+    color: #E03B8B;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.book-shelves-title {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.card.no-border{
+  border: none;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
