@@ -3,6 +3,14 @@ import "../App.css";
 import BookList from "./BookList";
 
 class BookView extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: false,
+    };
+  }
+
   // Functionality => For making id of by giving raw string
   generateId = (rawId) => {
     let tmpId = rawId.split(" ");
@@ -22,8 +30,10 @@ class BookView extends React.Component {
   };
 
   // Functionality => Helper function that trigger when something change in dropdown
-  updateBookShelfHelper = (book, id) => {
-    this.props.updateBookShelf(book, id);
+  updateBookShelfHelper = async (book, id) => {
+    this.setState({ isLoading: true });
+    await this.props.updateBookShelf(book, id);
+    this.setState({ isLoading: false });
   };
   render() {
     return (
@@ -40,11 +50,15 @@ class BookView extends React.Component {
                   <div className="bookshelf">
                     <h2 className="bookshelf-title">{books}</h2>
                     <div className="bookshelf-books">
-                      <BookList
-                        books={this.filterBooks(books)}
-                        dropdownMenu={this.props.dropdownMenu}
-                        onChangeHandler={this.updateBookShelfHelper}
-                      />
+                      {!this.state.isLoading ? (
+                        <BookList
+                          books={this.filterBooks(books)}
+                          dropdownMenu={this.props.dropdownMenu}
+                          onChangeHandler={this.updateBookShelfHelper}
+                        />
+                      ) : (
+                        <div class="spinner-grow text-warning"></div>
+                      )}
                     </div>
                   </div>
                 </div>

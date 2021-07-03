@@ -47,11 +47,13 @@ class BooksApp extends React.Component {
 
     this.state = {
       books: [],
+      screenWidth:window.innerWidth
     };
   }
 
   componentDidMount() {
     this.getAllBooks();
+    console.log(this.state.screenWidth)
   }
 
   getAllBooks = async () => {
@@ -114,6 +116,7 @@ class BooksApp extends React.Component {
             <SearchBook
               dropdownMenu={dropdownMenu}
               updateBookShelf={this.updateBookShelf}
+              booksListPresentInShelf={this.state.books}
             />
           )}
         ></Route>

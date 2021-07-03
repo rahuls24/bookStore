@@ -105,10 +105,33 @@ class SearchBook extends Component {
     );
   };
 
-  inputOnChangeHandler = async (e) => {
+    inputOnChangeHandler = async (e) => {
     if (this.isPresentInList(e.target.value)) {
-      try {
+        try {
         let books = await BooksAPI.search(e.target.value);
+          let booksAlreadyPresentAtShelf = books.filter((book) => {
+              let tmpBook = this.props.booksListPresentInShelf.filter((item) => {
+                  if (item.id === book.id) {
+                      book.shelf = item.shelf
+                        return item
+                }
+              })
+              if (tmpBook.length) {
+                  return tmpBook
+              }
+          })
+            for (let i = 0; i < books.length; i++){
+                let flag = 0;
+                for (let j = 0; j < booksAlreadyPresentAtShelf.length; j++){
+                    if (booksAlreadyPresentAtShelf[j].id === books[i].id) {
+                        books[i].shelf = booksAlreadyPresentAtShelf[j].shelf
+                        flag = 1;
+                    }
+                }
+                if (flag === 0) {
+                    books[i].shelf = "none"
+                }
+            }
         this.setState({ resBooks: books });
       } catch (error) {
         console.log(
